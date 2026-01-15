@@ -1,0 +1,37 @@
+# ============================================
+# Project ALI-C CInfig File
+# ============================================
+
+[build-system]
+requires = ["hatchling>=1.18"]
+build-backend = "hatchling.build"
+
+[project]
+name = "alic"
+version = "0.1.0"
+description = "Streamlit application scaffold"
+requires-python = ">=3.9"
+dependencies = [
+    "streamlit>=1.29,<2",
+    "pandas>=2.0",
+    "numpy>=1.24",
+    "altair>=5.0",
+    "plotly>=5.18",
+]
+
+keywords = ["streamlit", "webapp"]
+
+[tool.hatch.build]
+include = [
+    ".streamlit/config.toml",
+    "app.py",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["alic"]
+
+# Streamlit is not invoked as "module:function" like FastAPI/Flask.
+# Provide a small CLI that calls "streamlit run" ont your main script.
+
+[project.scripts]
+alic = "alic.cli:main"
